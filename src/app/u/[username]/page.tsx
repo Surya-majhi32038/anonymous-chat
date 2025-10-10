@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const page = () => {
+const Page = () => {
     const params = useParams();
     const [message, setMessage] = useState("");
     const username = params?.username as string;
@@ -122,4 +122,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

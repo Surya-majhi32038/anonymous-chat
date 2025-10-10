@@ -33,7 +33,7 @@ type MessageType = {
 const MessageCard = ({message,onMessageDelete}:MessageType) => {
     // console.log('message',message)
     const handleDelete = async() => {
-        const response = await axios.delete(`/api/delete-message/${message._id}`);
+       await axios.delete(`/api/delete-message/${message._id}`);
         toast.success("Message Delete");
         const id = message._id as string;
         onMessageDelete(id)

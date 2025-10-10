@@ -100,7 +100,7 @@ const Page = () => {
     const handleSwitch = async () => {
         // 7:51:00
         try {
-            const result = await axios.post("/api/accept-messages", {
+             await axios.post("/api/accept-messages", {
                 acceptMessages: !acceptMessages,
             });
 

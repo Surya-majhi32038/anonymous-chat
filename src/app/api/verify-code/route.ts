@@ -32,6 +32,7 @@ export async function POST(request: Request) {
 
 
     } catch (error) {
+        console.log("error happen in verify-code:",error)
         return Response.json({ success:false,message: "Internal Server Error:Verify code " }, { status: 500 });
     }
 }

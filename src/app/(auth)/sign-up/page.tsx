@@ -15,7 +15,6 @@ import {Eye, EyeOff, Loader2} from 'lucide-react'
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -84,7 +83,7 @@ const Page = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await axios.post("/api/sign-up", data);
+             await axios.post("/api/sign-up", data);
             // must check the response as log
             toast.success("code verification", {
                 description: 'verify code to your email address',
@@ -95,8 +94,8 @@ const Page = () => {
         } catch (error) {
             console.log("Error in signup of user", error);
             const axiosError = error as AxiosError<ApiResponse>;
-            let erroreMessage = axiosError.response?.data.message;
-
+            const erroreMessage = axiosError.response?.data.message;
+            console.log('error in sign-up page :',erroreMessage)
             toast.error("Failed", {
                 description: 'Something happen wrong',
                 action:{
