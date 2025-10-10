@@ -33,7 +33,7 @@ import { Eye, EyeOff } from 'lucide-react';
  *      --> goto /dashboard page
  *
  */
-const page = () => {
+const Page = () => {
     const [isPassHide, setIsPassHide] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
@@ -156,4 +156,4 @@ const page = () => {
         </div>;
 };
 
-export default page;
+export default Page;

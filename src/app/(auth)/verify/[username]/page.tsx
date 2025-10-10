@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const params = useParams();
     // zod implementation
@@ -90,4 +90,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

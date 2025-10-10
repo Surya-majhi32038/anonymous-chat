@@ -1,5 +1,5 @@
 import { ApiResponse } from "@/types/ApiResponse";
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 export async function sendVerificationEmail(
     email: string,
     username: string,
