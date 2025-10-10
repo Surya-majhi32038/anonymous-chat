@@ -1,5 +1,21 @@
 import mongoose,{Schema,Document} from 'mongoose';
 
+export interface AuthCredentials {
+  identifier: string; // email or username
+  password: string;
+}
+
+// Import the Mongoose user type
+
+export interface IUser extends Document {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  isVerified: boolean;
+  isAcceptingMessages: boolean;
+}
+
 export interface Message extends Document {
     content: string;
     createdAt:Date;

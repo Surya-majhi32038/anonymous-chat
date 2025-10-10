@@ -3,10 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
-interface AuthCredentials {
-  identifier: string;
-  password: string;
-}
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -17,7 +13,7 @@ export const authOptions: NextAuthOptions = {
             email: {label: "Email", type: "text"},
             password: {label: "Password", type: "password"}
         },
-        async authorize(credentials:any): Promise<any | null> {
+        async authorize(credentials:any): Promise<any> {
             // console.log('when it call, the auth function ')
             await dbConnect();
             try {
