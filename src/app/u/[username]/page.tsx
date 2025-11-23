@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
 const Page = () => {
     const params = useParams();
     const [message, setMessage] = useState("");
@@ -21,7 +20,7 @@ const Page = () => {
     const sendMessage = async () => {
         // console.log('message -> ',message)
         const safeMessage = messageSchema.safeParse({ content:message });
-        console.log(safeMessage)
+        // console.log(safeMessage)
         if (!safeMessage.success) {
             toast.warning("Message must 10 to 300 words");
             return;
@@ -32,20 +31,22 @@ const Page = () => {
                 username: username,
                 content: message,
             });
+            console.log("result from send message ",result.data)
     
-            if (!result.data.success && result.data.message == "User not found") {
-                if (result.data.message == "User not found") {
+            if (!result.data.success || result.data.message == "User-not-found") {
+                if (result.data.message == "User-not-found") {
                     toast.info("User not found");
-                } else if (result.data.message == "User is not accepting messages") {
+                } else if (result.data.message == "not-accepting") {
                     toast.info("User not accepting message");
                 }
             } else {
                 toast.success(" Message send successfully");
+                setMessage("");
             }
         
         } catch (error) {
             console.log("error happing when anonomys user send message ",error)
-            toast.error("Internal Error");
+            toast.error("Internal Error happen");
         }}
     const messages = [
         "What's a hobby you’ve recently started?",

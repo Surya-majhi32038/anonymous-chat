@@ -35,7 +35,8 @@ export default function Home() {
                         plugins={[Autoplay({ delay: 2000 })]}
                         className="w-full max-w-[95%] sm:max-w-[80%] md:max-w-lg mx-auto mt-8"
                     >
-                        <CarouselContent className="px-4 md:px-5">
+                        <CarouselContent className="px-4 md:px-4">
+
                             {messages.map((message, index) => (
                                 <CarouselItem
                                     key={index}

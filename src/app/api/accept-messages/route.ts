@@ -18,11 +18,19 @@ export async function POST(request: Request) {
         const userId = user._id;
         const {acceptMessages} = await request.json();
 
-        const newUser = await UserModel.findByIdAndUpdate(
-            userId,
-            { isAcceptingMessages: acceptMessages },
+        // const newUser = await UserModel.findByIdAndUpdate(
+        //     userId,
+        //     { isAcceptingMessages: acceptMessages },
+        //     { new: true }
+
+        // );
+        const newUser = await UserModel.findOneAndUpdate(
+            { _id: userId },
+            { isAccpetingMessages: acceptMessages },
             { new: true }
         );
+        // console.log('Updated user for accept messages(post) ',acceptMessages);
+        // console.log("newUser ", newUser?.isAccpetingMessages);
 
         if (!newUser) {
             return Response.json({ success: false, message: "User not found" }, { status: 404 });
@@ -52,7 +60,7 @@ export async function GET() {
         if (!existingUser) {
             return Response.json({ success: false, message: "User not found when send isAccepting flage" }, { status: 404 });
         }
-
+        // console.log('Fetched user accept messages status (get)', existingUser.isAccpetingMessages);
         return Response.json({ success: true, isAcceptingMessages: existingUser.isAccpetingMessages, 
             message: "Message acceptance status fetched successfully",
          }, { status: 200 });

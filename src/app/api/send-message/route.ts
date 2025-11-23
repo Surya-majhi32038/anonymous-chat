@@ -10,12 +10,14 @@ export async function POST(request: Request) {
         const {username,content} = await request.json();
         // here we will find the user by username and check if he is accepting messages
         const user = await UserModel.findOne({username});
+        // console.log("user found for send message ",user);
         if(!user) {
-            return Response.json({ success: false, message: "User not found" }, { status: 200 });
+            return Response.json({ success: false, message: "User-not-found" }, { status: 200 });
         }
 
         if(!user.isAccpetingMessages) {
-            return Response.json({ success: false, message: "User is not accepting messages" }, { status: 403 });
+            // console.log("user not accepting messages ");
+            return Response.json({ success: false, message: "not-accepting" }, { status: 200 });
         }
 
         const message = {
