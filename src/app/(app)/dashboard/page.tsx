@@ -229,6 +229,9 @@ const Page = () => {
                     />
                 ))
             ) : (
+                messages.length === 0 && !isLoading ? (
+                    <p className="flex w-[80vw] h-[30vh] justify-center items-center">No messages received yet.</p>
+                ) : 
                 <SkeletonCard/>
             )}
         </div>

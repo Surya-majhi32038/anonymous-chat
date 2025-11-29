@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         // );
         const newUser = await UserModel.findOneAndUpdate(
             { _id: userId },
-            { isAccpetingMessages: acceptMessages },
+            { isAcceptingMessages: acceptMessages },
             { new: true }
         );
         // console.log('Updated user for accept messages(post) ',acceptMessages);
@@ -61,7 +61,7 @@ export async function GET() {
             return Response.json({ success: false, message: "User not found when send isAccepting flage" }, { status: 404 });
         }
         // console.log('Fetched user accept messages status (get)', existingUser.isAccpetingMessages);
-        return Response.json({ success: true, isAcceptingMessages: existingUser.isAccpetingMessages, 
+        return Response.json({ success: true, isAcceptingMessages: existingUser.isAcceptingMessages, 
             message: "Message acceptance status fetched successfully",
          }, { status: 200 });
     } catch (error) {

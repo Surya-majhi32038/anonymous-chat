@@ -1,21 +1,50 @@
-import { NextAuthOptions } from "next-auth";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
+import { NextAuthOptions, User as NextAuthUser } from "next-auth";
+// inside your NextAuth file, near imports
+import { Types } from "mongoose";
+
+type DBUser = {
+    _id: Types.ObjectId | string;
+    username: string;
+    email: string;
+    password: string;
+    verifyCode: string;
+    verifyCodeExpiry: Date | string;
+    isVerified: boolean;
+    isAcceptingMessages: boolean;
+    messages?: [];
+};
 
 interface LoginCredentials {
     identifier: string;
     password: string;
 }
- type UserType = {
+interface LoginCredentials {
+    identifier: string;
+    password: string;
+}
+
+// This is what authorize will return
+type UserType = NextAuthUser & {
     _id: string;
-    email: string;
     username: string;
     password: string;
     isVerified: boolean;
     isAcceptingMessages: boolean;
-}
+};
+
+//  type UserType = {
+//     id: string;
+//     email: string;
+//     username: string;
+//     password: string;
+//     isVerified: boolean;
+//     isAcceptingMessages: boolean;
+// }
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -26,11 +55,11 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
-           async authorize(credentials: unknown): Promise<any | null> {
+            async authorize(credentials: unknown): Promise<UserType | null> {
                 // console.log('when it call, the auth function ')
                 await dbConnect();
 
-                console.log('credentials',credentials)
+                console.log('credentials', credentials)
 
                 // 1. Validate the credentials structure
                 if (
@@ -47,12 +76,10 @@ export const authOptions: NextAuthOptions = {
 
                     //const {email, password} = credentials;
 
-                    const user = await UserModel.findOne({
-                        $or: [
-                            { email: identifier },
-                            { username: identifier }
-                        ]
-                    })
+                    // Use .lean() to get a plain object (not a Mongoose Document)
+                    const user = await UserModel
+                        .findOne({ $or: [{ email: identifier }, { username: identifier }] })
+                        .lean() as DBUser | null;
 
                     if (!user) {
                         throw new Error("No user found with the given email or username");
@@ -68,7 +95,20 @@ export const authOptions: NextAuthOptions = {
                         throw new Error("Invalid password");
                     }
 
-                    return user;
+                    // 🔥 Map Mongoose document -> typed UserType object
+                    const safeUser: UserType = {
+                        _id: user._id.toString(),
+                        id: user._id.toString(),          // for NextAuth
+                        email: user.email,
+                        username: user.username,
+                        password: user.password,
+                        isVerified: user.isVerified,
+                        isAcceptingMessages: user.isAcceptingMessages,
+                        name: user.username,              // optional, from NextAuthUser
+                        image: null                       // or user.image if you have it
+                    };
+
+                    return safeUser;
                 } catch (error: unknown) {
                     if (error instanceof Error) {
                         throw new Error(error.message);
@@ -113,3 +153,4 @@ export const authOptions: NextAuthOptions = {
     },
     secret: process.env.NEXTAUTH_SECRET
 }
+console.log('NextAuth options loaded --> ', authOptions.providers[0].options);
