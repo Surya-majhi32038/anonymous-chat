@@ -25,7 +25,7 @@ import { Message } from "@/model/User.model";
 import axios from "axios";
 import { toast } from "sonner";
 import { X } from "lucide-react";
-
+import { ApiResponse } from '@/types/ApiResponse';
 type MessageType = {
     message: Message;
     onMessageDelete: (messageId: string) => void;
@@ -33,7 +33,7 @@ type MessageType = {
 const MessageCard = ({ message, onMessageDelete }: MessageType) => {
     // console.log('message',message)
     const handleDelete = async () => {
-        await axios.delete(`/api/delete-message/${message._id}`);
+        await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`);
         toast.success("Message Delete");
         const id = message._id as string;
         onMessageDelete(id)

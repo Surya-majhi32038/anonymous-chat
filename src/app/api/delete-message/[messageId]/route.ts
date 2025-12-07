@@ -5,13 +5,13 @@ import UserModel from "@/model/User.model";
 
 import { NextRequest, NextResponse } from "next/server";
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { messageId: string } }
+  request: Request,
+  { params }: { params: { messageid: string } }
 )  {
 
     try {
         await dbConnect();
-       const  messageId  = params.messageId;
+       const  messageId  = params.messageid;
         const session = await getServerSession(authOptions);
         const user = session?.user as User;
         if (!session || !user) {
