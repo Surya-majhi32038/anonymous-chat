@@ -97,6 +97,8 @@ const Page = () => {
     //     fetchMessages();
     //     fetchAcceptMessage();
     // },[]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         function runFunctions() {
             if (!session || !session.user) return;
@@ -118,7 +120,7 @@ const Page = () => {
         return () => {
             window.removeEventListener("focus", handleFocus);
         };
-    }, [session]);
+    },[session]);
 
     const handleSwitch = async () => {
         // console.log('handle switch run, acceptMessages:',acceptMessages);
