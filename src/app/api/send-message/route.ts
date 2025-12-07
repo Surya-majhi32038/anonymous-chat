@@ -15,7 +15,7 @@ export async function POST(request: Request) {
             return Response.json({ success: false, message: "User-not-found" }, { status: 200 });
         }
 
-        if(!user.isAccpetingMessages) {
+        if(!user.isAcceptingMessages) {
             // console.log("user not accepting messages ");
             return Response.json({ success: false, message: "not-accepting" }, { status: 200 });
         }
