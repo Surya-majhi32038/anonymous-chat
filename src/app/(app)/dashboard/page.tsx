@@ -220,7 +220,7 @@ const Page = () => {
                 <RefreshCcw className="h-4 w-4" />
             )}
         </Button>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-h-[38vh] overflow-y-auto">
             {messages.length > 0 ? (
                 messages.map((message, index) => (
                     <MessageCard
