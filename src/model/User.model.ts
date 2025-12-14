@@ -7,7 +7,7 @@ export interface AuthCredentials {
 
 // Import the Mongoose user type
 
-export interface IUser extends Document {
+export interface IUser   {
   _id: string;
   username: string;
   email: string;

@@ -26,7 +26,7 @@ const Page = () => {
 
     // create a local array to store all the messages, take id delete from array
     const handleDeleteMessage = (messageId: string) => {
-        setMessages(messages.filter((message) => message._id !== messageId));
+        setMessages(messages.filter((message) => message._id.toString() !== messageId));
     };
 
     const { data: session } = useSession();
