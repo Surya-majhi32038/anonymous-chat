@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
+# https://github.com/hiteshchoudhary/ama-app -- chai aur code github 
 # dependencies
 /node_modules
 /.pnp
