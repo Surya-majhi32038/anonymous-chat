@@ -67,7 +67,7 @@ const Page = () => {
                 </div>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col ">
                         <FormField
                             name="code"
                             control={form.control}
@@ -75,13 +75,13 @@ const Page = () => {
                                 <FormItem>
                                     <FormLabel>Verification code</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="code" {...field} />
+                                        <Input placeholder="enter the code" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button className="w-fit m-auto cursor-pointer" type="submit">Submit</Button>
                     </form>
                 </Form>
             </div>
