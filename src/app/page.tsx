@@ -19,7 +19,7 @@ export default function Home() {
     return (
         <>
 
-            <section className="flex flex-col justify-center items-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 min-h-[calc(92.25vh-80px)]">
+            <section className="flex relative flex-col justify-center items-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 h-screen">
                 <div className="max-w-7xl w-full mx-auto px-4 text-center">
                     {/* Hero */}
                     <h1 className="lg:text-4xl text-2xl font-bold text-white mb-4">
@@ -74,11 +74,11 @@ export default function Home() {
                         </Link>
                     </div>
                 </div>
+                <div className="w-full absolute bottom-0 py-4 border-t border-gray-700 text-center text-gray-400 text-sm bg-gray-900">
+                    © {year ?? "---"} True Feedback — Built for Real, Honest Conversations.
+                </div>
             </section>
 
-            <footer className="w-full py-4 border-t border-gray-700 text-center text-gray-400 text-sm bg-gray-900">
-                © {year ?? "---"} True Feedback — Built for Real, Honest Conversations.
-            </footer>
 
 
 

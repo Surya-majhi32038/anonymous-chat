@@ -90,7 +90,7 @@ const Page = () => {
                                 <FormItem>
                                     <FormLabel>Email or Usearname</FormLabel>
                                     <FormControl>
-                                        <Input  placeholder="eamil or username" {...field} 
+                                        <Input  placeholder="email or username" {...field} 
                                         />
                                     </FormControl>
                                     <FormMessage />
