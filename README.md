@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🕵️ Anonymous Feedback — Get Honest Feedback Without Fear
 
-## Getting Started
+## 💡 Overview
 
-First, run the development server:
+**Anonymous Feedback** is a full-stack **Next.js application** that allows users to collect **honest and unbiased feedback** without revealing the sender’s identity.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+People often hesitate to give real feedback when their name is visible. This platform solves that problem by providing a **unique anonymous feedback link**. Anyone with the link can submit feedback without logging in, while the owner receives all messages securely on their dashboard.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 🌐 Live Demo
+🔗 **Live Application:** https://your-live-app-link.vercel.app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Authentication & Security
 
-## Learn More
+- Secure user authentication using **NextAuth**
+- Password hashing with **bcryptjs**
+- JWT-based session handling
+- Email verification using **Nodemailer**
+- Protected routes using middleware
+- Input validation with **Zod**
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🔑 User registration and login
+- 📧 Email verification system
+- 🔗 Unique shareable feedback link
+- 🕵️ Completely anonymous message submission
+- 📬 Private dashboard to view feedback
+- ⚙️ Option to enable or disable accepting messages
+- 🛡️ Secure APIs with schema validation
+- 📱 Fully responsive UI
+- ⚡ Optimized Next.js App Router architecture
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠 Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🧑‍💻 Frontend
+- **Next.js**
+- **React**
+- **TypeScript**
+- **ShadCN UI**
+- **Tailwind CSS**
+- **Axios**
+
+### 🖥️ Backend
+- **Node.js**
+- **Next.js API Routes**
+- **MongoDB + Mongoose**
+- **NextAuth**
+- **bcryptjs**
+- **Zod**
+- **Nodemailer**
+- **JWT**
+
+---
+
+## 📁 Folder Structure
+
+```plaintext
+src/
+├── app/
+│   ├── (app)/                # Protected dashboard routes
+│   ├── (auth)/               # Authentication pages
+│   ├── api/                  # API routes
+│   ├── u/                    # Public anonymous feedback pages
+│   ├── layout.tsx            # Root layout
+│   ├── page.tsx              # Landing page
+│   ├── globals.css           # Global styles
+│   └── messages.json         # Static/sample data
+│
+├── components/
+│   ├── ui/                   # ShadCN UI components
+│   ├── MessageCard.tsx
+│   ├── Navbar.tsx
+│   ├── ProfileSkeleton.tsx
+│   └── SkeletonCard.tsx
+│
+├── context/
+│   └── AuthProvider.tsx      # Authentication context
+│
+├── helpers/
+│   └── sendVerificationEmail.ts
+│
+├── lib/
+│   ├── dbConnect.ts          # MongoDB connection
+│   ├── resend.ts             # Email utilities
+│   └── utils.ts
+│
+├── model/
+│   └── User.model.ts         # User schema/model
+│
+├── schemas/
+│   ├── acceptMessageSchema.ts
+│   ├── messageSchema.ts
+│   ├── signInSchema.ts
+│   ├── signUpSchema.ts
+│   └── verifySchema.ts
+│
+├── types/
+│   ├── ApiResponse.ts
+│   ├── next-auth.d.ts
+│   └── nodemailer.d.ts
+└── middleware.ts             # Route protection
