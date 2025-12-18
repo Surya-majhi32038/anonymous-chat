@@ -81,18 +81,19 @@ export const authOptions: NextAuthOptions = {
                         .findOne({ $or: [{ email: identifier }, { username: identifier }] })
                         .lean() as DBUser | null;
 
+                    console.log(user);
                     if (!user) {
-                        throw new Error("No user found with the given email or username");
+                        throw new Error("AUTH_USER_NOT_FOUND");
                     }
 
                     if (!user.isVerified) {
-                        throw new Error("User is not verified, please verify your email");
+                        throw new Error("AUTH_EMAIL_NOT_VERIFIED");
                     }
 
                     const isPasswordValid = await bcrypt.compare(password, user.password);
 
                     if (!isPasswordValid) {
-                        throw new Error("Invalid password");
+                        throw new Error("AUTH_INVALID_PASSWORD");
                     }
 
                     // 🔥 Map Mongoose document -> typed UserType object

@@ -55,15 +55,21 @@ const Page = () => {
             identifier: data.identifier,
             password: data.password,
         });
-
+        console.log("result log ->",result);
         if (result?.error) {
             setIsSubmitting(false);
-            toast.error("Failed to sign-in");
+            if(result?.error == "AUTH_USER_NOT_FOUND") {
+                toast.error("User not found");
+            } else if (result?.error == "AUTH_EMAIL_NOT_VERIFIED") {
+                toast.warning("Please verify your email first");
+            } else if (result?.error == "AUTH_INVALID_PASSWORD") {
+                 toast.error("Invalid password");
+            }
         }
 
         if (result?.url) {
             setIsSubmitting(false);
-            router.replace('/dashboard')
+            router.replace('/dashboard');
             toast.success("Success", {
                 description: "Welcome"
                 
@@ -88,9 +94,9 @@ const Page = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email or Usearname</FormLabel>
+                                    <FormLabel>Email or Username</FormLabel>
                                     <FormControl>
-                                        <Input  placeholder="email or username" {...field} 
+                                        <Input placeholder="email or username" {...field} 
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -108,7 +114,7 @@ const Page = () => {
                                     <Input
                                         {...field}
                                         type={isPassHide ? "password" : "text"}
-                                        placeholder="Password"
+                                        placeholder="password"
                                         className="pr-10" // Add padding-right for the button
                                     />
                                     </FormControl>

@@ -150,7 +150,7 @@ const Page = () => {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input type="email" placeholder="eamil" {...field} 
+                                        <Input type="email" placeholder="email" {...field} 
                                         />
                                     </FormControl>
                                     <FormMessage />
