@@ -96,10 +96,10 @@ const Page = () => {
             const axiosError = error as AxiosError<ApiResponse>;
             const erroreMessage = axiosError.response?.data.message;
             console.log('error in sign-up page :',erroreMessage)
-            toast.error("Failed", {
-                description: 'Something happen wrong',
+            toast.warning("Failed", {
+                description: 'Email id already exists',
                 action:{
-                    label:'Pleas Try again',
+                    label:'Please Login',
                     onClick:()=>toast.dismiss()
                 }
 

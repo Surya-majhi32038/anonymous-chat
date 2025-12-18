@@ -8,9 +8,9 @@ import UserModel from "@/model/User.model";
 export async function GET() {
     await dbConnect();
     const session = await getServerSession(authOptions);
-    console.log('session',session)
+    // console.log('session',session)
     const user = session?.user as User;
-    console.log('user',user)
+    // console.log('user',user)
     if(!session || !user) {
         return Response.json({ success: false, message: "Unauthorized" }, { status: 401 });
     }
@@ -19,7 +19,7 @@ export async function GET() {
 
         // must to convert this id string to a mongoose object id for aggregation
         const userId = new mongoose.Types.ObjectId(user._id);
-        console.log(userId)
+        // console.log(userId)
         const allMessages = await UserModel.aggregate([
             { $match: {_id: userId} },
             // { $unwind: "$messages" },
@@ -27,7 +27,7 @@ export async function GET() {
             // { $group: {_id: "$_id", messages: { $push: "$messages" } } }
         ]);
 
-        console.log('get-messages-',allMessages)
+        // console.log('get-messages-',allMessages)
 
         if(!allMessages || allMessages.length === 0) {
             return Response.json({ success: true, message: "No messages found" }, { status: 200 });

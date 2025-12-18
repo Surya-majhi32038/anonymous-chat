@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
                 // console.log('when it call, the auth function ')
                 await dbConnect();
 
-                console.log('credentials', credentials)
+                // console.log('credentials', credentials)
 
                 // 1. Validate the credentials structure
                 if (
@@ -153,4 +153,4 @@ export const authOptions: NextAuthOptions = {
     },
     secret: process.env.NEXTAUTH_SECRET
 }
-console.log('NextAuth options loaded --> ', authOptions.providers[0].options);
+// console.log('NextAuth options loaded --> ', authOptions.providers[0].options);
