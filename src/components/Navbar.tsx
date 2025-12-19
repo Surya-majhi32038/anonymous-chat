@@ -11,7 +11,7 @@ const Navbar = () => {
     const handleLogOut = () => {
         signOut({ callbackUrl: '/' })
     }
-    console.log('as here', user);
+    // console.log('as here', user);
     return (
         <nav className="p-4 lg:px-[10%] md:p-6 shadow-md bg-gray-900 ">
             <div className={`container mx-auto flex ${session ? "" : "flex-row justify-between"} flex-col md:flex-row justify-between items-center`}>
